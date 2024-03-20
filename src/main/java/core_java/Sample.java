@@ -12,6 +12,7 @@ public class Sample {
         String studentMailid = "subash2145@gmail.com";
         char studentBloodgroup = 'B';
         long studentMobileno = 9789468347l;
+        
 
         System.out.println("---------------Student details-----------");
 
