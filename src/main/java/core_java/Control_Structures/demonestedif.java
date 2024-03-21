@@ -1,4 +1,4 @@
-package core_java;
+package core_java.Control_Structures;
 
 import java.util.Scanner;
 
