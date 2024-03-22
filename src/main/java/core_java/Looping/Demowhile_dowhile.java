@@ -1,7 +1,5 @@
 package core_java.Looping;
 
-import java.util.Scanner;
-
 /**
  * Demowhile_dowhile
  */
