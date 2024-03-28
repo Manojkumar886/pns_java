@@ -1,8 +1,5 @@
 package core_java.Looping;
 
-/**
- * Demowhile_dowhile
- */
 public class Demowhile_dowhile {
     public static void main(String[] args) {
         int i = 10;
