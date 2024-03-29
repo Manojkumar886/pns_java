@@ -7,6 +7,7 @@ public class Demo_Readarray {
     // passing array
 
     public void PassingArray(float percentage[]) {
+        percentage[4] = 0.0f;
         System.out.println(percentage[0]); // 4th position value
         Scanner scan = new Scanner(System.in);
         System.out.println(" which position of percentage value you want...!");
