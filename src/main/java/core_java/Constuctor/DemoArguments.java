@@ -8,7 +8,7 @@ public class DemoArguments {
 
     // parameterized constructor
     public DemoArguments(String collegename, double CGPA, int myage) {
-
+        System.out.println(CGPA);
         this.CGPA = CGPA;
         age = myage;
     }
