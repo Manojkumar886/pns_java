@@ -22,5 +22,6 @@ public class Demo_Readarray {
         float CGPA[] = { 7.8f, 9.8f, 6.1f, 6.6f, 9.9f, 8.4f };
 
         read.PassingArray(CGPA);
+
     }
 }
