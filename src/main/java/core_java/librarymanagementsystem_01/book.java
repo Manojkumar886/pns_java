@@ -2,23 +2,36 @@ package core_java.librarymanagementsystem_01;
 
 public class book {
     private int book_serialno;
-    private String book_name;
+    String book_name;
     private String book_author;
     private int book_quantity;
+    private int bookQtyCopy;
+
+    @Override
+    public String toString() {
+        return "book [book_serialno=" + book_serialno + ", book_name=" + book_name + ", book_author=" + book_author
+                + ", book_quantity=" + book_quantity + ", bookQtyCopy=" + bookQtyCopy + "]";
+    }
 
     // parameterized constructor
-    public book(int book_serialno, String book_name, String book_author, int book_quantity) {
+    public book(int book_serialno, String book_name, String book_author, int book_quantity, int bookQtyCopy) {
         this.book_serialno = book_serialno;
         this.book_name = book_name;
         this.book_author = book_author;
         this.book_quantity = book_quantity;
+        this.bookQtyCopy = bookQtyCopy;
+    }
+    // public static void main(String[] args) {
+    // book b=new book(0, null, null, 0, 0);
+
+    // new book(0, null, null, 0, 0);
+    // }
+    public int getBookQtyCopy() {
+        return bookQtyCopy;
     }
 
-    // tostring
-    @Override
-    public String toString() {
-        return "book [book_serialno=" + book_serialno + ", book_name=" + book_name + ", book_author=" + book_author
-                + ", book_quantity=" + book_quantity + "]";
+    public void setBookQtyCopy(int bookQtyCopy) {
+        this.bookQtyCopy = bookQtyCopy;
     }
 
     public int getBook_serialno() {

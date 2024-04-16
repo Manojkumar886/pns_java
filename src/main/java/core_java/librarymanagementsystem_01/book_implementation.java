@@ -10,4 +10,5 @@ public interface book_implementation {
 
     public void showall_bookdetails();
 
+    public void deletebybook_userspecifications();
 }
