@@ -14,15 +14,21 @@ public class library implements book_implementation, student_implementation {
 
     @Override
     public void add_newstudent(student studentdetails) {
-        for (int i = 0; i < studentspace.length; i++) {
-            if (studentspace[i] == null) {
-                studentspace[i] = studentdetails;
-                System.out.println(studentdetails.getStudent_name() + " has been registered..!");
-                return;
-            } else {
-                System.out.println(" add no more space...!");
+        try {
+            for (int i = 0; i < studentspace.length; i++) {
+                if (studentspace[i] == null) {
+                    studentspace[i] = studentdetails;
+                    System.out.println(studentdetails.getStudent_name() + " has been registered..!");
+                    return;
+                }
+                throw new LibraryException();
             }
-
+        } catch (LibraryException le) {
+            System.out.println(le);
+            System.out.println("please any one value you delete you will add new value..!");
+            System.out.println(" which value you want delete");
+            deletebystudent_userspecifications();
+            add_newstudent(studentdetails);
         }
     }
 
