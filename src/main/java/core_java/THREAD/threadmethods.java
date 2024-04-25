@@ -10,7 +10,16 @@ public class threadmethods {
             }
         };
 
--(10);
+        th1.setName("MANOJKUMAR");
+        th1.setPriority(1);
+        th1.start();
+        Thread th2 = new Thread() {
+            public void run() {
+                demo.LIST();
+            }
+        };
+        th2.setName("Praveen");
+        th2.setPriority(10);
         th2.start();
     }
 
@@ -30,4 +39,4 @@ class demothreadufnction {
         }
     }
 
-}-
+}
