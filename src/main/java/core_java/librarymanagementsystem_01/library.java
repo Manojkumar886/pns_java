@@ -3,7 +3,7 @@ package core_java.librarymanagementsystem_01;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class library implements book_implementation, student_implementation {
+public class library implements book_implementation, student_implementation, Runnable {
 
     book bookspace[] = new book[5];
     student studentspace[] = new student[5];
@@ -138,7 +138,8 @@ public class library implements book_implementation, student_implementation {
         }
     }
 
-    public static void main(String[] args) {
+    synchronized public void run() {
+        System.out.println("welcome to " + Thread.currentThread().getName());
 
         library library1 = new library();
 
