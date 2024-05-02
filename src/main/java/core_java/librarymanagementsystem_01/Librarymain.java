@@ -2,7 +2,9 @@ package core_java.librarymanagementsystem_01;
 
 public class Librarymain {
     public static void main(String[] args) {
-        library lib1 = new library();
+        // library lib1 = new library();
+
+        librarycollection lib1 = new librarycollection();
 
         Thread th1 = new Thread(lib1, "Manojkumar");
         th1.start();
