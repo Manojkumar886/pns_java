@@ -1,39 +1,76 @@
 package core_java.librarymanagementsystem_01;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.TreeSet;
 
-public class librarycollection implements book_implementation, student_implementation, Runnable {
-
+public class libraryfiles implements book_implementation, student_implementation, Runnable {
     static Scanner scan = new Scanner(System.in);
 
+    HashSet<book> bookdetails = null;
     LinkedList<student> studentdetails = null;
 
-    HashSet<book> bookdetails = null;
+    File location = new File("D:\\png\\libraryfile.doc");
 
-    public librarycollection() {
+    public void write() throws IOException {
+        FileOutputStream fos = new FileOutputStream(location);
 
-        student student1 = new student("Manojkumar", 1001, "BCA");
-        student student2 = new student("Praveen", 1002, "BSC CS");
-        studentdetails.add(student1);
-        studentdetails.add(student2);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-        book book1 = new book(101, "Zealous", "Razak", 5, 5);
-        book book2 = new book(102, "Livewire", "Markjack", 10, 10);
+        oos.writeObject(studentdetails);
 
-        bookdetails.add(book1);
-        bookdetails.add(book2);
+        oos.close();
+        fos.close();
     }
+
+    public void read() {
+        try {
+            FileInputStream fis = new FileInputStream(location);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            studentdetails = (LinkedList<student>) ois.readObject();
+            fis.close();
+            ois.close();
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    // public libraryfiles() {
+    // File location = new File("D:\\png\\libraryfile.doc");
+
+    // try {
+    // location.createNewFile();
+    // LinkedList<student> studentdetails = new LinkedList<>();
+    // FileOutputStream fos = new FileOutputStream(location);
+    // ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+    // oos.writeObject(studentdetails);
+    // oos.close();
+    // fos.close();
+
+    // } catch (IOException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+
+    // }
 
     @Override
     synchronized public void run() {
         System.out.println("welcome to " + Thread.currentThread().getName());
 
-        librarycollection library1 = new librarycollection();
+        libraryfiles library1 = new libraryfiles();
 
         do {
             System.out.println(
@@ -102,91 +139,22 @@ public class librarycollection implements book_implementation, student_implement
 
     @Override
     public void add_newstudent(student studentdetails1) {
-        studentdetails.add(studentdetails1);
-        System.out.println(studentdetails1.getStudent_name() + " has been added successfully");
+
+        try {
+            read();
+            studentdetails.add(studentdetails1);
+            write();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void listall_studentdetails() {
+        read();
         Iterator it = studentdetails.iterator();
-
-        for (; it.hasNext();) {
-            System.out.println(it.next());
-        }
-    }
-
-    @Override
-    public void deletebystudent_userspecifications() {
-        System.out.println(" which field you want choose delete");
-        System.out.println("1.studetname/n2.studentid/n3.studentdepartment");
-        System.out.println(" please select any one using numeric number");
-        int process = scan.nextInt();
-        switch (process) {
-            case 1:
-                System.out.println(" please enter your studentname");
-                String studentname = scan.next();
-
-                for (int i = 0; i < studentdetails.size(); i++) {
-                    if (studentdetails.get(i).getStudent_name().equals(studentname)) {
-                        studentdetails.remove(i);
-                        System.out.println(studentname + " has beem deleted ...!");
-                        break;
-                    }
-                }
-
-                break;
-            case 2:
-                // System.out.println(" please enter yourbook name");
-                // String bookname = scan.next();
-                // for (int i = 0; i < bookspace.length; i++) {
-                // if (bookspace[i].getBook_name().equals(bookname)) {
-                // bookspace[i] = null;
-                // System.out.println(bookname + " has been deleted successfully");
-                // return;
-                // }
-                // }
-                break;
-            case 3:
-                // System.out.println(" please enter yourbook author name");
-                // String bookauthor_name = scan.next();
-                // for (int i = 0; i < bookspace.length; i++) {
-                // if (bookspace[i].getBook_author().equals(bookauthor_name)) {
-                // bookspace[i] = null;
-                // System.out.println(bookauthor_name + " has been deleted successfully");
-                // return;
-                // }
-                // }
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public book addnew_book(book bookdetails1) {
-        bookdetails.add(bookdetails1);
-        System.out.println(bookdetails1.book_name + " has been added successfully");
-        return bookdetails1;
-    }
-
-    @Override
-    public int upgrade_bookquantity(String bookname) {
-        // for(int i=0;i<bookdetails.size();i++)
-        // {
-        // if(bookdetails)
-
-        // }
-
-        return 0;
-    }
-
-    @Override
-    public void search_bybookname(String book_name) {
-    }
-
-    @Override
-    public void showall_bookdetails() {
-        Iterator it = bookdetails.iterator();
 
         while (it.hasNext()) {
             System.out.println(it.next());
@@ -194,7 +162,39 @@ public class librarycollection implements book_implementation, student_implement
     }
 
     @Override
+    public void deletebystudent_userspecifications() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletebystudent_userspecifications'");
+    }
+
+    @Override
+    public book addnew_book(book bookdetails) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addnew_book'");
+    }
+
+    @Override
+    public int upgrade_bookquantity(String bookname) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'upgrade_bookquantity'");
+    }
+
+    @Override
+    public void search_bybookname(String book_name) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'search_bybookname'");
+    }
+
+    @Override
+    public void showall_bookdetails() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'showall_bookdetails'");
+    }
+
+    @Override
     public void deletebybook_userspecifications() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletebybook_userspecifications'");
     }
 
 }

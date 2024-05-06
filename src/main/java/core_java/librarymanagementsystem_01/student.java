@@ -1,6 +1,8 @@
 package core_java.librarymanagementsystem_01;
 
-public class student {
+import java.io.Serializable;
+
+public class student implements Serializable {
     private String student_name;
     private int student_id;
     private String student_department;

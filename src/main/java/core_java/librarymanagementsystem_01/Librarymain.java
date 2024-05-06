@@ -4,7 +4,9 @@ public class Librarymain {
     public static void main(String[] args) {
         // library lib1 = new library();
 
-        librarycollection lib1 = new librarycollection();
+        // librarycollection lib1 = new librarycollection();
+
+        libraryfiles lib1 = new libraryfiles();
 
         Thread th1 = new Thread(lib1, "Manojkumar");
         th1.start();
