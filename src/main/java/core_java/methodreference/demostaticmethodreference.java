@@ -4,14 +4,19 @@ import java.util.Comparator;
 
 public class demostaticmethodreference {
     public static void main(String[] args) {
-        int compare = demostaticmethodreference.comparenumbers(78, 67);
-        System.out.println(" normal static usage :" + compare);
+        // contract c= (a,b)->{ System.out.println(a+b);};
+        // c.multiple(56,78);
 
-        Comparator<Integer> compare1 = (x, y) -> {
-            return Integer.compare(89, 23);
-        };
+        contract.multiple(456, 44);
 
-        System.out.println(" lambeda with comapre :" + compare1.compare(78, 65));
+        // int compare = demostaticmethodreference.comparenumbers(78, 67);
+        // System.out.println(" normal static usage :" + compare);
+
+        // Comparator<Integer> compare1 = (x, y) -> {
+        // return Integer.compare(89, 23);
+        // };
+
+        // System.out.println(" lambeda with comapre :" + compare1.compare(78, 65));
 
         // // contract ca = (x, y) -> {
         // // return x + y;
